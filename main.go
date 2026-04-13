@@ -76,7 +76,7 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 		term:      pty.Term,
 		width:     pty.Window.Width,
 		height:    pty.Window.Height,
-		txtStyle:  lipgloss.NewStyle().Foreground(lipgloss.Color("10")),
+		txtStyle:  lipgloss.NewStyle().Foreground(lipgloss.Color("3")),
 		quitStyle: lipgloss.NewStyle().Foreground(lipgloss.Color("8")),
 		bg:        "light",
 	}
