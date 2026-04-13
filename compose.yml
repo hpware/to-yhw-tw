@@ -1,0 +1,8 @@
+services:
+  "to-yhw-tw":
+    #image: ghcr.io/hpware/to-yhw-tw
+    build: .
+    ports:
+      - 2222:23234
+    environment:
+      - ENV=prod
