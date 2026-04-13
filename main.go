@@ -1,8 +1,5 @@
 package main
 
-// An example Bubble Tea server. This will put an ssh session into alt screen
-// and continually print up to date terminal information.
-
 import (
 	"context"
 	"errors"
@@ -23,8 +20,16 @@ import (
 	"github.com/charmbracelet/ssh"
 )
 
+var serverEnvIsProd = os.Getenv("ENV") == "prod"
+
+var host = func() string {
+	if serverEnvIsProd {
+		return "0.0.0.0"
+	}
+	return "localhost"
+}()
+
 const (
-	host = "localhost"
 	port = "23234"
 )
 
@@ -117,7 +122,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m model) View() tea.View {
-	s := fmt.Sprintf("Your term is %s\nYour window size is %dx%d\nBackground: %s\nColor Profile: %s", m.term, m.width, m.height, m.bg, m.profile)
+	s := fmt.Sprintf("Hi there, welcome to a WIP ssh server!\n您好！這個 ssh 伺服器還在 WIP!\n\n你的 IP 是: %s", "我不知道")
 	v := tea.NewView(m.txtStyle.Render(s) + "\n\n" + m.quitStyle.Render("Press 'q' to quit\n"))
 	v.AltScreen = true
 	return v
